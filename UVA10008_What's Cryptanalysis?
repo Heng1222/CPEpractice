@@ -1,0 +1,29 @@
+#include<stdio.h>
+int main(){
+	int n;
+	scanf("%d\n",&n);
+	int ans[26]={0};
+	int i =0;
+	char now;
+	while(scanf("%c", &now)!=EOF){
+		if((now-65)>=0&&(now-65)<26){
+			ans[now-65]++;
+		}
+		else if((now-97)>=0&&(now-97)<26){
+			ans[now-97]++;
+		}
+	}
+	int max;
+	for(int k = 0 ; k < 26 ; k++){
+		if(ans[k] > max){
+			max = ans[k];
+		}
+	}
+	for(int sort = max ; sort > 0; sort--){
+		for(int j = 0 ; j < 26; j++){
+			if(ans[j] == sort){
+				printf("%c %d\n", (65+j), ans[j]);
+			}
+		}
+	}
+} 
