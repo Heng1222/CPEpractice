@@ -1,0 +1,24 @@
+#include<stdio.h>
+int calculate(int);
+int main(){
+	int i, j;
+	while(scanf("%d %d", &i,&j)!=EOF){
+		int max=0;
+		printf("%d %d", i,j);
+		if(j<i){
+			int temp = j;
+			j=i;
+			i=temp;
+		}
+		for(int k = i; k <=j; k++){
+			if(calculate(k)>max) max= calculate(k);
+		}
+		printf(" %d\n", max+1);
+	}
+}
+
+int calculate(int n){
+	if(n==1)return 0;
+	if(n%2==1)return 1+calculate(3*n+1);
+	else return 1+calculate(n/2);
+}
