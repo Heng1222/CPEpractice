@@ -1,0 +1,19 @@
+#include<stdio.h>
+
+int step(int,int,int,int);
+int main(){
+	int times=0;
+	scanf("%d", ×);
+	int th=0;
+	while(th++!=times){
+		int nx,ny,dx,dy;
+		scanf("%d %d %d %d", &nx, &ny, &dx, &dy);
+		int total=step(nx,ny,dx,dy);
+		printf("Case %d: %d\n", th, total);
+	}
+}
+int step(int nx, int ny, int dx, int dy){
+	if(nx==dx&&ny==dy){return 0;}
+	if(ny==0)return 1+step(0,nx+1,dx,dy);
+	return 1+step(nx+1,ny-1,dx,dy);
+}
