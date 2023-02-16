@@ -1,0 +1,41 @@
+#include<stdio.h>
+
+void changeBin(int, int bin[]);
+int countone(int ABC[]);
+int main(){
+	int N = 0;
+	scanf("%d", &N);
+	while(N--){
+		int target;
+		int bin[20]={};
+		scanf("%d", &target);
+		changeBin(target, bin);
+		int target2[5]={};
+		for(int t= 0 ; t< 5; t++){
+			target2[t]=target%10;
+			target/=10;
+			if(target==0)break;
+		}
+		int b2=0;
+		for(int t2 : target2){
+			int bin2[20]={};
+			changeBin(t2, bin2);
+			b2+=countone(bin2);
+		}
+		printf("%d %d\n",countone(bin), b2);
+	}
+}
+void changeBin(int t, int BIN[]){
+	int n=0;
+	while(t!=0){
+		BIN[n++]=t%2;
+		t/=2;
+	}
+}
+int countone(int ABC[]){
+	int one =0;
+	for(int k=0 ; k<20; k++){
+		if(ABC[k]==1)one++;
+	}
+	return one;
+}
