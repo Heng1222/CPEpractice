@@ -1,0 +1,23 @@
+#include<stdio.h>
+int calculate(int,int, int);
+int main(){
+	int n = 0;
+	while(scanf("%d", &n)!=EOF){
+		int sum=0, empty=0,borrow=0, max=0;
+		for(;borrow<3; borrow++){
+			sum=calculate(n,empty+borrow, borrow);
+			//printf("%d\n",sum);
+			if(sum>max) max=sum;
+		}
+		
+		printf("%d\n", max);
+	}
+}
+int calculate(int n, int empty, int borrow){
+	n+=empty/3;
+	empty%=3;
+	if(n+empty==borrow||(n+empty)/3+(n+empty)%3<borrow||n+empty<3){
+		return n;
+	}
+	return n+calculate(0, n+empty,borrow);
+}
