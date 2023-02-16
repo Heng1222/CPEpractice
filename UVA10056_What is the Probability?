@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<math.h>
+float calculate(float, int, int, int, int);
+int main(){
+	int times=0;
+	scanf("%d", ×);
+	while(times--){
+		int players=0, target=0;
+		float rate=0;
+		double ans=0;
+		scanf("%d %f %d", &players, &rate, &target);
+		for(int round = 1; round <=50; round++){
+			for(int t = 1; t <= players; t++){
+				ans+=calculate(rate, players, target, round, t);
+			}
+		}
+		printf("%.4f\n", ans);
+	}
+}
+float calculate(float rate,int people, int target, int round, int t){
+	float lossrate = 1-rate;
+	if(t==target){
+		if((round-1)*people+(t-1)!=0){
+			return pow(lossrate,(round-1)*people+(t-1))*rate;
+		}else{
+			return rate;
+		}
+		
+	}else{
+		return 0;
+	}
+}
