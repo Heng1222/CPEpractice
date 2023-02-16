@@ -1,0 +1,17 @@
+#include<stdio.h>
+
+int main(){
+	int n, a, b, Case=0;
+	long long ans=0;
+	scanf("%d", &n);
+	while(n--){
+		scanf("%d\n", &a);
+		scanf("%d\n", &b);
+		for(int i = (a%2==0)?a+1:a ; i<= b; i+=2){
+			ans+=i;
+		}
+		printf("Case %d: %lld\n",++Case, ans);
+		ans = 0;
+	}
+
+}
