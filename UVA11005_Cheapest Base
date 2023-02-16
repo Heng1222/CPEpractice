@@ -1,0 +1,50 @@
+#include<stdio.h>
+
+int calculateInk(int, int, int* ink);
+int main(){
+	int n = 0, nowN=0;
+	scanf("%d", &n);
+	while(nowN++!=n){
+		printf("Case %d:\n", nowN);
+		int ink[36]={};
+		for(int i = 0; i <36; i++){
+			scanf("%d", ink+i);
+		}
+		int number = 0;
+		scanf("%d", &number);
+		while(number--){
+			int target, nowInk=0, nowTest=2; 
+			bool minList[37];
+			scanf("%d", &target);
+			int min=2, minInk;
+			minInk=calculateInk(target, min, ink);
+			while(nowTest<=36){
+				nowInk = calculateInk(target, nowTest, ink);
+				if(nowInk<minInk){
+					for(int i =0 ;i <=36; i++){
+						minList[i]=false;
+					}
+					minList[nowTest] = true;
+					minInk=nowInk;
+				}else if(nowInk==minInk){
+					minList[nowTest]=true;
+				}
+				nowTest++;
+			}
+			printf("Cheapest base(s) for number %d:", target);
+			for(int i = 0 ; i <= 36; i++){
+				if(minList[i])printf(" %d", i);
+			}
+			printf("\n");
+		}
+		if(nowN!=n)printf("\n");
+		else return 0;
+	}
+}
+int calculateInk(int target, int checkink, int* ink){
+	int ans=0;
+	for(;target!=0;target/=checkink){
+		ans+=*(ink+(target%checkink));
+	}
+	return ans;
+}
