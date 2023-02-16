@@ -1,0 +1,37 @@
+#include<stdio.h>
+#include<math.h>
+
+int main(){
+	int n;
+	while(scanf("%d ", &n)!=EOF){
+		int a[n], size = n; 
+		while(--n>=0){
+			scanf("%d ", a+n);
+		}
+		if(size==1){
+			printf("Jolly\n");
+			continue;
+		}
+		int b[size-1];
+		for(int i = 0 ; i <size-1 ; i++){
+			b[i] = abs(a[i+1]-a[i]);
+		}
+		bool op=false;
+		for(int r = 1 ; r < size ; r++){
+			for(int c = 0; c <size-1;c++){
+				if(b[c]==r){
+					op =true;
+					break;
+				}
+				op = false;
+			}
+			if(op == false) break;
+		}
+		if(op){
+			printf("Jolly\n");
+		}else{
+			printf("Not jolly\n");
+		}
+	}
+	return 0;
+} 
